@@ -32,6 +32,53 @@ int result(char board, int action)
 // Determine the winner of the game.
 // Implement and return the symbol of the winner ('X', 'O', or ' ') indicating no winner.
 // Takes the current board state as input.
-char winner(char board)
+char winner(char board[3][3])
 {
+  char winner = ' ';
+
+  //rows
+  for (int i = 0; i < 3; ++i)
+  {
+    if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')
+    {
+      winner = board[i][0];
+      break;
+    }
+  }
+
+  //columns
+  for (int i = 0; i < 3; ++i)
+  {
+    if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ')
+    {
+      winner = board[0][i];
+      break;
+    }
+  }
+
+  //diagonals
+  if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') 
+  {
+    winner = board[0][0];
+  }
+  if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') 
+  {
+    winner = board[0][2];
+  }
+
+  //winner
+  if (winner == 'X')
+  {
+    cout << "X" wins!" << endl;
+  }
+  else if (winner == 'O')
+  {
+    cout << "O" wins!" << endl;
+  }
+  else if (winner == ' ')
+  {
+    cout << "draw!" << endl;
+  }
+
+  return winner;
 }
